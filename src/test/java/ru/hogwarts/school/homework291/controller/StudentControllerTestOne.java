@@ -8,8 +8,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import ru.hogwarts.school.homework29.model.Student;
-import ru.hogwarts.school.homework29.repositories.StudentRepository;
+import ru.hogwarts.school.homework291.model.Student;
+import ru.hogwarts.school.homework291.repositories.StudentRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +44,7 @@ public class StudentControllerTestOne {
 
         studentRepository.deleteAll();
 
-        student = new Student(1,"Test", 10);
+        student = new Student("Test", 10);
         url = "http://localhost:" + port + "/student";
 
 
@@ -92,7 +92,7 @@ public class StudentControllerTestOne {
     @Test
     public void shouldReturnAndUpdateCustomer() {
 
-        Student studentPost = new Student(4, "Artur", 30);
+        Student studentPost = new Student("Artur", 30);
         Student studentResponseEntity = restTemplate.postForObject(
                 "http://localhost:" + port + "/student",
                 studentPost,
@@ -115,7 +115,7 @@ public class StudentControllerTestOne {
     @Test
     void shouldPutStudent() {
 
-        Student studentNew = new Student(5, "Test", 16);
+        Student studentNew = new Student("Test", 16);
         Student response = restTemplate.postForObject(
                 "http://localhost:" + port + "/student",
                 studentNew,

@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
-import ru.hogwarts.school.homework29.model.Faculty;
-import ru.hogwarts.school.homework29.repositories.FacultyRepository;
+import ru.hogwarts.school.homework291.model.Faculty;
+import ru.hogwarts.school.homework291.repositories.FacultyRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,7 +37,7 @@ class FacultyControllerTestOne {
 
         facultyRepository.deleteAll();
 
-        faculty = new Faculty(1,"Griffindor", "Green");
+        faculty = new Faculty("Griffindor", "Green");
 
     }
 
@@ -107,7 +107,7 @@ class FacultyControllerTestOne {
     @Test
     void shouldPutFaculty() {
 
-        Faculty newFaculty = new Faculty(10, "Yellow", "Blue");
+        Faculty newFaculty = new Faculty("Yellow", "Blue");
 
         Faculty createdFaculty = restTemplate.postForObject(
                 "http://localhost:" + port + "/faculty",
