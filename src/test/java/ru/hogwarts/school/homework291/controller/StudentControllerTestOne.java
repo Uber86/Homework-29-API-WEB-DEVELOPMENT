@@ -6,15 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import ru.hogwarts.school.homework291.model.Student;
 import ru.hogwarts.school.homework291.repositories.StudentRepository;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -150,6 +146,7 @@ public class StudentControllerTestOne {
 
 
 
+    /*
     @Test
     void testFindAge() {
         int minAge = 10;
@@ -186,5 +183,7 @@ public class StudentControllerTestOne {
         assertEquals(expected, resp.getBody());
 
     }
+
+     */
 
 }

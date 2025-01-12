@@ -1,6 +1,7 @@
 package ru.hogwarts.school.homework291.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
@@ -9,11 +10,13 @@ import ru.hogwarts.school.homework291.model.Avatar;
 import ru.hogwarts.school.homework291.model.Student;
 import ru.hogwarts.school.homework291.repositories.AvatarRepository;
 import ru.hogwarts.school.homework291.repositories.StudentRepository;
+import ru.hogwarts.school.homework291.repositories.StudentsByCategory;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -94,6 +97,22 @@ public class StudentService {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
+    public List<StudentsByCategory> getStudentsAvg (){
+        return studentRepository.getStudentsAvg();
+    }
+
+    public List<StudentsByCategory> getStudentsQuantity(){
+        return studentRepository.getStudentsQuantity();
+    }
+
+    public List<StudentsByCategory> getStudentsDesc(){
+        return studentRepository.getStudentsDesc();
+    }
+
+    public List<Student> getAvatarPage(Integer pageNumber, Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        return studentRepository.findAll(pageRequest).getContent();
+    }
 
 
 }
