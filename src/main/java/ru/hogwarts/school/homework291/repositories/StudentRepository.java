@@ -17,7 +17,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<StudentsByCategory> getStudentsAvg();
 
     @Query(value = "SELECT COUNT(*) AS total FROM student", nativeQuery = true)
-    List<StudentsByCategory> getStudentsQuantity();
+    Long getStudentsQuantity();
 
     @Query(value = "SELECT * FROM student ORDER BY id DESC LIMIT 4" , nativeQuery = true)
     List<StudentsByCategory> getStudentsDesc();

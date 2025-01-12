@@ -23,7 +23,7 @@ public class StudentsByCategoryController {
     }
 
     @GetMapping("/students-by-quantity")
-    public List<StudentsByCategory> getStudentsQuantity(){
+    public Long getStudentsQuantity(){
         return service.getStudentsQuantity();
 
     }

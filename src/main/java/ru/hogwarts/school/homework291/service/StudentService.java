@@ -101,7 +101,7 @@ public class StudentService {
         return studentRepository.getStudentsAvg();
     }
 
-    public List<StudentsByCategory> getStudentsQuantity(){
+    public Long getStudentsQuantity(){
         return studentRepository.getStudentsQuantity();
     }
 
