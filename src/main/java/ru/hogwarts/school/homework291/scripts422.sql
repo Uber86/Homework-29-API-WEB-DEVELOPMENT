@@ -1,21 +1,15 @@
-CREATE TABLE student (
-    id SMALLINT,
-    age SMALLINT CHECK (age >= 16),
-    name VARCHAR(50) PRIMARY KEY,
-    faculty_id SMALLINT REFERENCES faculty (id)
+CREATE TABLE human (
+    id BIGINT,
+    age SMALLINT,
+    name VARCHAR(50)PRIMARY KEY,
+    driver_license BOOLEAN,
+    car_id SMALLINT REFERENCES car (id)
 );
 
-CREATE TABLE faculty (
-    id SMALLINT,
-    color,name  VARCHAR(50) UNIQUE,
-);
-
-CREATE TABLE avatar (
-    id SMALLINT,
-    data OID,
-    file_path TEXT,
-    file_size BIGINT,
-    media_type TEXT,
-    student_id SMALLINT REFERENCES student(id)
+CREATE TABLE car (
+    id INTEGER,
+    brand VARCHAR(50),
+    model VARCHAR(50),
+    price INTEGER
 );
 
