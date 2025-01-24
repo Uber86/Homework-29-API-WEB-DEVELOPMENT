@@ -158,5 +158,6 @@ public class StudentService {
                 .limit(1_000_000)
                 .reduce(0, (a, b) -> a + b );
         return sum;
+
     }
 }
