@@ -20,7 +20,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -130,5 +132,31 @@ public class StudentService {
         logger.info("Was invoked method for getAvatarPage student");
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
         return studentRepository.findAll(pageRequest).getContent();
+    }
+
+    public List<Student> getByFirstLetter(String letter) {
+        List<Student> students = new ArrayList<>(studentRepository.findAll());
+        List <Student> filteredNames = students.stream()
+                .filter(name -> name.startsWith(ToUpperCase(letter)))
+                .sorted()
+                .collect(Collectors.toList());
+        return filteredNames;
+    }
+
+
+    public double getByAveValue() {
+        List<Student> students = new ArrayList<>(studentRepository.findAll());
+        double averageAge = students.stream()
+                .mapToInt(Student::getAge)
+                .summaryStatistics()
+                .getAverage();
+        return averageAge;
+    }
+
+    public long integerValue() {
+        int sum = Stream.iterate(1, a -> a +1)
+                .limit(1_000_000)
+                .reduce(0, (a, b) -> a + b );
+        return sum;
     }
 }
