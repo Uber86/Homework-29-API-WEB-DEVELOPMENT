@@ -135,9 +135,9 @@ public class StudentService {
     }
 
     public List<Student> getByFirstLetter(String letter) {
-        List<Student> students = new ArrayList<>(studentRepository.findAll());
+        List<Student> students = studentRepository.findAll();
         List <Student> filteredNames = students.stream()
-                .filter(name -> name.startsWith(ToUpperCase(letter)))
+                .filter(student -> student.getName().startsWith(letter.toUpperCase()))
                 .sorted()
                 .collect(Collectors.toList());
         return filteredNames;
@@ -154,10 +154,12 @@ public class StudentService {
     }
 
     public long integerValue() {
-        int sum = Stream.iterate(1, a -> a +1)
-                .limit(1_000_000)
-                .reduce(0, (a, b) -> a + b );
-        return sum;
+        long sum1;
+        sum1 = Stream
+                .iterate(1, a -> a +1)
+                .parallel()
+                .reduce(0, Integer::sum );
+        return sum1;
 
     }
 }

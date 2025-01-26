@@ -52,6 +52,13 @@ public class FacultyController {
     @GetMapping
     public ResponseEntity<Collection<Faculty>> findFaculties(@RequestParam(required = false) String name, @RequestParam(required = false) String color) {
         return ResponseEntity.ok(service.findByNameOrColor(name, color));
-
     }
+
+
+    @GetMapping (value = "/maxLenght")
+    public ResponseEntity<String> getByMaxLenght() {
+        return ResponseEntity.ok(String.valueOf(service.getByMaxLenght()));
+    }
+
+
 }
