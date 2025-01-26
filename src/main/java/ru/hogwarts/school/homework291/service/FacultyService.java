@@ -8,9 +8,12 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.ErrorResponseException;
 import ru.hogwarts.school.homework291.model.Faculty;
+import ru.hogwarts.school.homework291.model.Student;
 import ru.hogwarts.school.homework291.repositories.FacultyRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class FacultyService {
@@ -50,6 +53,17 @@ public class FacultyService {
     public Collection<Faculty> findByNameOrColor(String name, String color) {
         logger.info("Was invoked method for findByNameOrColor faculty");
         return facultyRepository.findByNameIgnoreCaseOrColorIgnoreCase(name, color);
+    }
+
+    public long getByMaxLenght() {
+        List<Faculty> faculties = new ArrayList<>(facultyRepository.findAll());
+        int maxLenght = faculties.stream()
+                .mapToInt((value) -> {
+                    return value.getName().length();
+                })
+                .summaryStatistics()
+                .getMax();
+        return maxLenght;
     }
 
 }

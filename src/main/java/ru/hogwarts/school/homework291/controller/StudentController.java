@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 
 @RequestMapping(path = "/student")
 @RestController
@@ -60,7 +61,7 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Student>> findStudents(@RequestParam int minAge, @RequestParam int maxAge) {
+    public ResponseEntity<Collection<Student>> findBetween(@RequestParam int minAge, @RequestParam int maxAge) {
         return ResponseEntity.ok(service.findBetween(minAge , maxAge));
     }
 
@@ -98,6 +99,21 @@ public class StudentController {
             response.setContentLength((int) avatar.getFileSize());
             is.transferTo(os);
         }
+    }
+
+    @GetMapping (value = "/letter")
+    public ResponseEntity<List<Student>> getByFirstLetter (@RequestParam String letter){
+        return ResponseEntity.ok(service.getByFirstLetter(letter));
+    }
+
+    @GetMapping (value = "/ave")
+    public ResponseEntity<Double> getByAveValue() {
+        return ResponseEntity.ok(service.getByAveValue());
+    }
+
+    @GetMapping (value = "/intValue")
+    public ResponseEntity<Long>  integerValue() {
+        return ResponseEntity.ok(service.integerValue());
     }
 
 
