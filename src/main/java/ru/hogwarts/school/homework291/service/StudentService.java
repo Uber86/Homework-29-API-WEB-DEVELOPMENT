@@ -37,6 +37,7 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
     private final AvatarRepository avatarRepository;
+    private Thread thread = new Thread();
 
     public StudentService(StudentRepository studentRepository, AvatarRepository avatarRepository) {
         this.studentRepository = studentRepository;
@@ -161,5 +162,56 @@ public class StudentService {
                 .reduce(0, Integer::sum );
         return sum1;
 
+    }
+
+
+
+    public void getFlowStudent() {
+
+        thread(1);
+        thread(2);
+
+        Thread two = new Thread(() -> {
+            thread(3);
+            thread(4);
+        });
+        two.start();
+
+        Thread three = new Thread(() -> {
+            thread(5);
+            thread(6);
+        });
+        three.start();
+    }
+
+
+    public void getSynchronizedFlowStudent() {
+
+        synchronizedthread(1);
+        synchronizedthread(2);
+
+        Thread two = new Thread(() -> {
+            synchronizedthread(3);
+            synchronizedthread(4);
+        });
+        two.start();
+
+        Thread three = new Thread(() -> {
+            synchronizedthread(5);
+            synchronizedthread(6);
+        });
+        three.start();
+    }
+
+
+    public void thread(int id) {
+        System.out.println(studentRepository.findById((long) id));
+    }
+
+    public void synchronizedthread(int id) {
+        synchronized (StudentRepository.class) {
+            System.out.println(studentRepository.findById((long) id));
+
+        }
     }
 }
