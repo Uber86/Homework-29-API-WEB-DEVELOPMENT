@@ -116,7 +116,17 @@ public class StudentController {
         return ResponseEntity.ok(service.integerValue());
     }
 
+    @GetMapping(value = "/students/print-parallel")
+    public ResponseEntity<Student> printParallel () {
+        service.getFlowStudent();
+        return ResponseEntity.ok().build();
+    }
 
+    @GetMapping(value = "/students/print-synchronized")
+    public ResponseEntity<Student> printSynchronizedParallel () {
+        service.getSynchronizedFlowStudent();
+        return ResponseEntity.ok().build();
+    }
 
 
 }
